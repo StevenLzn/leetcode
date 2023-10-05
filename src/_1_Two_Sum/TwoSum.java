@@ -1,19 +1,21 @@
-package Two_Sum_1;
+package _1_Two_Sum;
 
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class TwoSum {
     public int[] twoSum(int[] nums, int target) {
-        int[] result = new int[2];
+        Map<Integer, Integer> numsMap = new HashMap<>();
+
         for (int i = 0; i < nums.length; i++) {
-            for (int j = i + 1; j < nums.length; j++) {
-                if (nums[i] + nums[j] == target) {
-                    result[0] = i;
-                    result[1] = j;
-                    break;
-                }
+            int complement = target - nums[i];
+            if(numsMap.containsKey(complement)){
+                return new int[]{numsMap.get(complement), i};
             }
+            numsMap.put(nums[i], i);
         }
-        return result;
+        return new int[]{};
     }
 
     public static void main(String[] args) {
